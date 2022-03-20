@@ -5,6 +5,8 @@ author: Martijn van Schie
 date: 2022-02-02 12:00:00 +0100
 categories: tutorial howto
 tags: azure azure-functions event-grid csharp dotnet
+cover-img: "/images/azure-cover-01.jpg"
+thumbnail-img: "/images/svgexport-114.png"
 ---
 
 ## Introduction
