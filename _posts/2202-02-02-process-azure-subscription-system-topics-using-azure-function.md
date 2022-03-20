@@ -7,10 +7,6 @@ categories: tutorial howto
 tags: azure azure-functions event-grid csharp dotnet
 ---
 
-# HowTo: Process Azure Subscription System Topics using Azure Function
-
-[Home](https://martijnvanschie.github.io/)
-
 ## Introduction
 
 We can use Azure Functions to as event handlers for Event Grid events. The basic implementation is very easy but when you want to handle system events you have to do some manual work to get it to work.
