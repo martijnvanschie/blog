@@ -1,0 +1,38 @@
+sequenceDiagram
+    autonumber
+    participant ep as Event Publisher
+    participant egt as Event Grid Topic
+    participant sub as Subscription
+    participant eh as Event Handler Endpoint
+
+    eh ->> sub: Subscribe
+    activate sub
+    sub -->> eh: [Ok]
+
+    ep ->> egt: Send event message
+    
+    activate egt
+    
+    egt -->> ep: [Ok]
+
+    activate egt
+
+    loop Foreach Subscription
+        alt If event filter matched
+            egt ->> sub: Publish message
+            sub -->> egt: [Ok]
+        end
+    end
+
+    deactivate egt
+    deactivate egt
+
+    loop Untill Acknowlege
+        sub ->> eh: Send event
+        eh -->> sub: Acknowlege
+        deactivate sub
+    end
+
+    activate eh
+    eh --> eh: Process event
+    deactivate eh
