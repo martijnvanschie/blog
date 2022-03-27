@@ -9,10 +9,6 @@ thumbnail-img: "/images/icons/azure/event-grid-topic-lg.png"
 excerpt_separator: <!--more-->
 ---
 
-# 1. Azure Messaging Services Series
-<!--more-->
-## 1.1. Introduction
-<!--more-->
 Azure provides an variety of messaging services which can be used to create advanced event driven architectures. The services include
 
 - Azure Event Grid
@@ -23,38 +19,36 @@ This series will cover all three of these services in more detail and will focus
 
 Part one of the series focusses on Azure Event Grid so lets get right into it....
 
-## 1.2. Table of content
+# 1. Table of content
 
-- [1. Azure Messaging Services Series](#1-azure-messaging-services-series)
-  - [1.1. Introduction](#11-introduction)
-  - [1.2. Table of content](#12-table-of-content)
-  - [1.3. Azure Event Grid](#13-azure-event-grid)
-  - [1.4. Event Grid Resources](#14-event-grid-resources)
-    - [1.4.1. Event Publisher](#141-event-publisher)
-    - [1.4.2. Event Grid Topics](#142-event-grid-topics)
-    - [1.4.3. Subscriptions](#143-subscriptions)
-    - [1.4.4. Event Handlers](#144-event-handlers)
-  - [1.5. Delivery pattern](#15-delivery-pattern)
-    - [1.5.1. One-to-many Push pattern](#151-one-to-many-push-pattern)
-    - [1.5.2. Event Message flow](#152-event-message-flow)
-    - [1.5.3. Message content](#153-message-content)
-  - [1.6. Other features](#16-other-features)
-    - [1.6.1. Reliability and Failover](#161-reliability-and-failover)
-    - [1.6.2. Security](#162-security)
-      - [1.6.2.1. Publishing to Event Topics](#1621-publishing-to-event-topics)
-      - [1.6.2.2. Subscribing to Event Topics](#1622-subscribing-to-event-topics)
-  - [1.7. So how do we use it?](#17-so-how-do-we-use-it)
-    - [1.7.1. Jip en Janneke](#171-jip-en-janneke)
-    - [1.7.2. Use Cases](#172-use-cases)
-  - [Summary](#summary)
+- [1. Table of content](#1-table-of-content)
+  - [1.1. Azure Event Grid](#11-azure-event-grid)
+  - [1.2. Event Grid Resources](#12-event-grid-resources)
+    - [1.2.1. Event Publisher](#121-event-publisher)
+    - [1.2.2. Event Grid Topics](#122-event-grid-topics)
+    - [1.2.3. Subscriptions](#123-subscriptions)
+    - [1.2.4. Event Handlers](#124-event-handlers)
+  - [1.3. Delivery pattern](#13-delivery-pattern)
+    - [1.3.1. One-to-many Push pattern](#131-one-to-many-push-pattern)
+    - [1.3.2. Event Message flow](#132-event-message-flow)
+    - [1.3.3. Message content](#133-message-content)
+  - [1.4. Other features](#14-other-features)
+    - [1.4.1. Reliability and Failover](#141-reliability-and-failover)
+    - [1.4.2. Security](#142-security)
+      - [1.4.2.1. Publishing to Event Topics](#1421-publishing-to-event-topics)
+      - [1.4.2.2. Subscribing to Event Topics](#1422-subscribing-to-event-topics)
+  - [1.5. So how do we use it?](#15-so-how-do-we-use-it)
+    - [1.5.1. Jip en Janneke](#151-jip-en-janneke)
+    - [1.5.2. Use Cases](#152-use-cases)
+  - [1.6. Summary](#16-summary)
 
-## 1.3. Azure Event Grid
+## 1.1. Azure Event Grid
 
 Azure Event Grid is a lightweight messaging service that consists of a collaboration of different Azure resources. It allows clients to send event messages to this centralized service via a Event Topic. Client services, which are interested in this event, can then subscribe to this topic and receive the messages.
 
 The role of the Event Grid is to orchestrated the distribution of these events in a reliable way to all the individual subscribers. This makes it a very suitable service to be used in a publish-subscribe architecture model.
 
-## 1.4. Event Grid Resources
+## 1.2. Event Grid Resources
 
 Event Grid is the service which is between the **publisher** and **subscriber**. Using Event Grid requires a few resources and services working together. The following image shows an example of these resource and how they form the event chain
 
@@ -62,7 +56,7 @@ Event Grid is the service which is between the **publisher** and **subscriber**.
 
 A **resource** acts as a event source and sends a message to an **event topic**. Each Azure Event Topic can have one or more **Event Subscriptions**. These Event subscriptions are abstract resources that route events to target **Event Handler** (or **subscriber**).
 
-### 1.4.1. Event Publisher
+### 1.2.1. Event Publisher
 
 An event publisher is either an Azure Resource, which supports Azure Event Grid, or any other client which is capable of sending http(s) requests to an endpoint. 
 
@@ -70,7 +64,7 @@ Microsoft offers a large set of [SDKs](https://docs.microsoft.com/en-us/azure/ev
 
 > I will dedicate a separate blog on developing against Azure Event Grid in the future.
 
-### 1.4.2. Event Grid Topics
+### 1.2.2. Event Grid Topics
 
 A topic can be considered a source of an event and is the unique, static, property of the message. Topics are strings and usually contain the name of the events source. But when creating a custom topic this can be any value.
 
@@ -91,7 +85,7 @@ Below image is an example of a system event send from a subscription. An example
 
 For more information about the available topics check the [System topics in Azure Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/system-topics) page on Microsoft Docs.
 
-### 1.4.3. Subscriptions
+### 1.2.3. Subscriptions
 
 Behind the scene Event Grid **Subscriptions** are routing components that send a http(s) call to another endpoint. But in reality they are not just resources that route event forward to event handlers.
 
@@ -108,7 +102,7 @@ Below are the most common features of a subscription.
 -  Enable dead-lettering
 -  Configure subscription expiration time
 
-### 1.4.4. Event Handlers
+### 1.2.4. Event Handlers
 
 **Event Handlers** are the actually receivers of the event.
 
@@ -123,15 +117,15 @@ Event Handlers can be one of the pre-defined Azure Resources. Currently only the
 
 Other then that you can send the event or a generic **Event Hook** endpoint which pretty much opens up a lot of possibilities.
 
-## 1.5. Delivery pattern
+## 1.3. Delivery pattern
 
-### 1.5.1. One-to-many Push pattern
+### 1.3.1. One-to-many Push pattern
 
 As mentioned before Azure Event Grid uses a push pattern in which it *sends* messages from the Event Grid to all subscribers. It uses a one-to-many distribution pattern and each incoming event is distributed to all subscribers that match the event filter.
 
 After receiving the message the subscriber will send back an acknowledgement response which tells the event grid that the message was delivered successfully. 
 
-### 1.5.2. Event Message flow
+### 1.3.2. Event Message flow
 
 So what does the message flow look like? Below sequence diagram tries to explain the message flow in a more detailed view (Powered by [Mermaid](https://mermaid-js.github.io/mermaid/#/)).
 
@@ -182,16 +176,16 @@ Then an event publisher will send a event message to a event topic on the grid. 
 
 If the filter matches the subscription event grid will try to send the message to the event handler until it receives a acknowledgment from the event handler.
 
-### 1.5.3. Message content
+### 1.3.3. Message content
 
 Compared to the other two messaging services the payload of the Event Grid message is limited and contains only the minimal required information about the event that occurred for subscribers to acts on this event. It also follows a well defines [schema](https://docs.microsoft.com/en-us/azure/event-grid/event-schema) which promoted standardization. 
 
 > **For example**: Azure Blob Storage could send an event when a new file was created. The event will contain the information about the storage account and file that was created. It will not contain the actual data of the file.  
 > [Example](https://docs.microsoft.com/en-us/azure/event-grid/event-schema-blob-storage?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&tabs=event-grid-event-schema#example-event)
 
-## 1.6. Other features
+## 1.4. Other features
 
-### 1.6.1. Reliability and Failover 
+### 1.4.1. Reliability and Failover 
 
 So what does this all mean for reliability and failover. Well event grid does have a mechanisms for this. It will try to send, and resend, the event message to the subscriber. This is done within the configured events expiration time which is a max of 24 hours. After that the message is either discarded of dead-lettered, depending on the configuration.
 
@@ -212,13 +206,13 @@ If the processing of the event would fail this would means that:
 - For the **Queue Storage**, the logic will not be deleted from the queue and will be picked up in a next run of the client
 - For the **Event Hub**, the logic will not update the checkpoint or replay the message from the hub
 
-### 1.6.2. Security
+### 1.4.2. Security
 
 There are many ways to secure the Event Grid and Subscriptions. And as this could be a whole blog on its own, here is the **TL;DR** summary of this topic. 
 
 For more details please read the Microsoft documentation [Azure security baseline for Event Grid](https://docs.microsoft.com/en-us/security/benchmark/azure/baselines/event-grid-security-baseline)
 
-#### 1.6.2.1. Publishing to Event Topics
+#### 1.4.2.1. Publishing to Event Topics
 
 To prevent unwanted publishers to send event messages to the Event Grid Topic you can use one of the following 
 
@@ -227,21 +221,21 @@ To prevent unwanted publishers to send event messages to the Event Grid Topic yo
 - Protect the Event Grid with **Network Security Groups**
 - Authorize access to the Event Grid with **Access Control**
 
-#### 1.6.2.2. Subscribing to Event Topics
+#### 1.4.2.2. Subscribing to Event Topics
 
 Creating of subscriptions required the right access control to be able to write new subscriptions to the Event Grid Topic. You can use **Built-in roles** to allow users to create subscriptions to your topics.
 
-## 1.7. So how do we use it?
+## 1.5. So how do we use it?
 
 So now you have a general idea on what Azure Event Grid is and how it works. The final thought i want to share is what i would use Azure Event Grid for and why.
 
-### 1.7.1. Jip en Janneke 
+### 1.5.1. Jip en Janneke 
 
 We have a saying in the Netherlands which is "*Jip en Janneke taal*". It means that you explain something in simple words which none-technical people should be able to understand. This is not always easy but in this case i'm willing to give it a try.
 
 If i would explain event grid i would compare it to notifications on your phone. Let's say you "hit the notification bell" on a YouTube channel (**Subscription**) and the content creator uploaded a new video (**Publisher**). You then receive a notification on your phone which shows you (**Event Handler**) the message in the notification area. The grid in this case is the phones notification service. Also, all users that subscribe to this channel get this notification (**one-to-many**).
 
-### 1.7.2. Use Cases
+### 1.5.2. Use Cases
 
 What makes Event Grid different from the other messaging services is that you, as a receiver, only get the info about the what and when of the event. So in our *Jip en Janneke* example, you still need to go to the actually video to watch it and you can do this whenever you want. Also, if you delete the notification you lose the info.
 
@@ -253,7 +247,7 @@ As with any other architectural design there are requirements that drive these d
 
 If we look at the other two messaging services, they revolve more around exchanging *data* centric messages with a more rich payload. These services usually contain business data that need to be consumed by the receiver and can potentially not be obtained from the source besides via the message.
 
-## Summary
+## 1.6. Summary
 
 IN this blog i tried to explain how Azure Event Grid works and what it capabilities are. Hopefully this will help anyone who want to get started on, or evaluate their current, event driven architecture.
 
