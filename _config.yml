@@ -6,7 +6,7 @@
 # --- Required options --- #
 
 # Name of website
-title: Martijn van Schie
+title: Martijn van Schie's Blog
 
 # Your name to show in the footer
 author: Martijn van Schie
@@ -27,7 +27,8 @@ navbar-links:
 
 # Image to show in the navigation bar - works best with a square image
 # Remove this parameter if you don't want an image in the navbar
-avatar: "/assets/img/avatar-icon.png"
+#avatar: "/assets/img/avatar-icon.png"
+avatar: "/images/covers/profile01.jpg"
 
 # By default, the image is cut into a circle. You can disable this behaviour by setting 'round-avatar: false'
 round-avatar: true
@@ -257,4 +258,3 @@ plugins:
 
 # Beautiful Jekyll / Dean Attali
 # 2fc73a3a967e97599c9763d05e564189
-
