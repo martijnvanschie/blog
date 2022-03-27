@@ -1,16 +1,15 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle: I love everything Microsoft and Azure Cloud
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+My name is Martijn van Schie and I'm a Azure Solution Architect at [Bryte Blue](https://bryte.blue).
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+I have over 15 years of experience with both on-premise and cloud solutions and architecture patterns.
 
-What else do you need?
+This blog is my way of sharing experience on everything that is related to Azure Cloud and Services. Everyone has a different view on how they would address specific challenges and it's good to share this with the community.
 
-### My story
+Feel free to contact me at:
 
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+- m.vanschie@bryte.blue
