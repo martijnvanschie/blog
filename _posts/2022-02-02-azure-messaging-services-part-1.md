@@ -6,7 +6,6 @@ date: 2022-03-27 00:00:00 +0100
 tags: azure event-grid messaging-services
 cover-img: "/images/covers/clouds-modern-01.jpg"
 thumbnail-img: "/images/icons/azure/event-grid-topic-lg.png"
-excerpt_separator: <!--more-->
 ---
 
 Azure provides an variety of messaging services which can be used to create advanced event driven architectures. The services include
@@ -50,7 +49,7 @@ The role of the Event Grid is to orchestrated the distribution of these events i
 
 ## 1.2. Event Grid Resources
 
-Event Grid is the service which is between the **publisher** and **subscriber**. Using Event Grid requires a few resources and services working together. The following image shows an example of these resource and how they form the event chain
+Event Grid is the service which is between the **publisher** and **subscriber**. Using Event Grid requires a few resources and services working together. The following image shows an example of these resource and how they form the event chain.
 
 ![Event Grid Message Flow!](../images/posts/20220202/event-grid-message-flow.png "Event Grid Message Flow")
 
