@@ -2,7 +2,7 @@
 
 ## Blog
 
-[Martijn's Blog](https://martijnvanschie@github.io)
+[Martijn's Blog](https://martijnvanschie.github.io)
 
 ## Thanks to
 
